@@ -1,0 +1,21 @@
+name: Create Issue on Card Move
+
+on:
+  project_card:
+    transitioned:
+      from: "To Do"
+      to: "In Progress"
+
+jobs:
+  create_issue:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create Issue
+        uses: peter-evans/create-issue-from-file@v3
+        with:
+          title: 'New Issue from Project Card'
+          body: |
+            An issue was created because the card was moved to "In Progress."
+            - **Card URL**: ${{ github.event.project_card.url }}
+            - **Card ID**: ${{ github.event.project_card.id }}
+          labels: 'in progress'
