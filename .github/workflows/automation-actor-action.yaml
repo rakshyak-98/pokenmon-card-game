@@ -1,0 +1,38 @@
+name: Create Issue and Branch on Task Move
+
+on:
+  project_card:
+    types: [moved]
+
+jobs:
+  create_issue_and_branch:
+    runs-on: ubuntu-latest
+    if: github.event.project_card.column_id == '47fc9ee4'
+    steps:
+      - name: Create Issue
+        uses: peter-evans/create-issue-from-file@v3
+        id: create_issue
+        with:
+          title: ${{ github.event.project_card.note }}
+          assignees: ${{ github.actor }}
+          labels: ${{ github.event.project_card.column_name }}
+          body: |
+            This issue was automatically created from the project board.
+
+      - name: Create Branch
+        run: |
+          ISSUE_TITLE="${{ steps.create_issue.outputs.issue_title }}"
+          DATE=$(date +'%Y-%m-%d')
+          BRANCH_NAME="feature-${DATE}/${ISSUE_TITLE// /-}"
+          git checkout -b "$BRANCH_NAME"
+          git push origin "$BRANCH_NAME"
+
+      - name: Update README with Issue Link
+        run: |
+          ISSUE_URL="${{ steps.create_issue.outputs.issue_url }}"
+          echo "- [${{ steps.create_issue.outputs.issue_title }}]($ISSUE_URL)" >> README.md
+          git config --local user.email "rakshak1998@gmail.com"
+          git config --local user.name "rakshyak-98"
+          git add README.md
+          git commit -m "Add issue link to README"
+          git push
