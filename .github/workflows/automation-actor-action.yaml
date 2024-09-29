@@ -7,7 +7,7 @@ on:
 jobs:
   create_issue_and_branch:
     runs-on: ubuntu-latest
-    if: github.event.project_card.column_id == '47fc9ee4'
+    if: github.event.project_card.column_id == {{ secrets.PROJECT_BOARD_COLUMN_ID }}
     steps:
       - name: Create Issue
         uses: peter-evans/create-issue-from-file@v3
