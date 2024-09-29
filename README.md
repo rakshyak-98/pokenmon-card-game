@@ -2,6 +2,13 @@
 
 ## Internal
 ### Workflow
+### Actions (WIP)
+1. **Trigger**: When a task is moved to the **"In Progress"** section of **GitHub Projects**.
+2. **Create an Issue**: 
+   - The issue title will be the same as the task title.
+   - The issue will be automatically assigned to the person who moved the task.
+3. **Create a Branch**:
+   - The branch name will follow your naming convention and will use the issue title.
 #### How to contribute
 1. Go to [porject](https://github.com/users/rakshyak-98/projects/3)
 2. Select task from todo.
