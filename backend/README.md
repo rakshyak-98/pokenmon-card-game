@@ -1,5 +1,41 @@
 To successfully set up and develop a robust Go (Golang) RESTful API service, it's essential to gather and configure various tools, libraries, and resources. Below is a comprehensive list of **requirements** categorized into different sections to help you prepare your development environment and ensure your project adheres to best practices.
 
+## Folder file structure
+
+```txt
+myapi/
+├── cmd/
+│   └── myapi/
+│       └── main.go
+├── internal/
+│   ├── handlers/
+│   │   └── user_handler.go
+│   ├── models/
+│   │   └── user.go
+│   ├── services/
+│   │   └── user_service.go
+│   ├── repository/
+│   │   └── user_repository.go
+│   └── middleware/
+│       └── auth.go
+├── pkg/
+│   └── utils/
+│       └── helper.go
+├── configs/
+│   └── config.yaml
+├── scripts/
+│   └── setup.sh
+├── migrations/
+│   └── 0001_create_users_table.up.sql
+├── test/
+│   └── handlers/
+│       └── user_handler_test.go
+├── go.mod
+├── go.sum
+├── README.md
+└── Makefile
+```
+
 ## 1. **Programming Language and Environment**
 
 ### **Go Language**
@@ -8,7 +44,7 @@ To successfully set up and develop a robust Go (Golang) RESTful API service, it'
 - **Installation:** Follow the official [Go installation guide](https://golang.org/doc/install) for your operating system.
 - **Environment Setup:**
   - **GOROOT:** Directory where Go is installed.
-  - **GOPATH:** Workspace for your Go projects.  - **PATH:** Include `$GOPATH/bin` and `$GOROOT/bin` in your system's PATH.
+  - **GOPATH:** Workspace for your Go projects. - **PATH:** Include `$GOPATH/bin` and `$GOROOT/bin` in your system's PATH.
 
 ### **Go Modules**
 
